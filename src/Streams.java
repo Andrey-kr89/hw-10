@@ -43,9 +43,7 @@ public class Streams {
         s.forEach(System.out::println);
     }
 
-
     public static Stream<Integer> randomNumber(long a, int c, long m, int seed) {
-
         return Stream.iterate(seed, x -> x = Math.toIntExact(((a * x + c) % m)))
                 .limit(5);
     }
@@ -55,8 +53,6 @@ public class Streams {
         List<T> a = first.collect(Collectors.toList());
         List<T> b = second.collect(Collectors.toList());
         List<T> c = new LinkedList<>();
-
-        int i = 0;
         while (!a.isEmpty() && !b.isEmpty()) {
             Random xr = new Random();
             int x = xr.nextInt(a.size());
@@ -73,5 +69,4 @@ public class Streams {
         result = c.stream();
         return result;
     }
-
 }
