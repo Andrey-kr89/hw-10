@@ -19,25 +19,25 @@ public class Streams {
         Stream<String> nameStream = names.stream();
         List<String> v = nameStream
                 .sorted(Collections.reverseOrder())
-                .map(s -> s.toUpperCase())
+                .map(String::toUpperCase)
                 .collect(Collectors.toList());
-        System.out.println(v.toString());
+        System.out.println(v);
 
         //Task three
         List<String> numbers = Stream.of("1, 2, 0", "4, 5", "3, 9, 8")
                 .flatMap(Pattern.compile(", ")::splitAsStream)
                 .sorted()
                 .collect(Collectors.toList());
-        System.out.println(numbers.toString());
+        System.out.println(numbers);
 
         //Task four
-        Stream<Long> res = randomNumber(25214903917l, 11, 2 ^ 48L, 0);
+        Stream<Long> res = randomNumber(25214903917L, 11, 2 ^ 48L, 0);
         res.forEach(System.out::println);
 
         //task five
         Stream<String> streamA = Stream.of("A", "B", "C", "D");
         Stream<String> streamB = Stream.of("1", "2", "3", "4", "5", "6");
-        Stream s = zip(streamA, streamB);
+        Stream<String> s = zip(streamA, streamB);
         s.forEach(System.out::println);
     }
 
