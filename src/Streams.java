@@ -31,7 +31,7 @@ public class Streams {
         System.out.println(numbers.toString());
 
         //Task four
-        Stream<Integer> res = randomNumber(25214903917l, 11, 2 ^ 48L, 0);
+        Stream<Long> res = randomNumber(25214903917l, 11, 2 ^ 48L, 0);
         res.forEach(System.out::println);
 
         //task five
@@ -41,9 +41,11 @@ public class Streams {
         s.forEach(System.out::println);
     }
 
-    public static Stream<Integer> randomNumber(long a, int c, long m, int seed) {
+    public static Stream<Long> randomNumber(long a, int c, long m, int seed) {
         return Stream.iterate(seed, x -> x = Math.toIntExact(((a * x + c) % m)))
-                .limit(5);
+                .limit(5)
+                .map(Long::valueOf)
+              ;
     }
 
     public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
